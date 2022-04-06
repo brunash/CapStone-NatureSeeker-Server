@@ -9,17 +9,12 @@ const { Mongoose
 } = require("mongoose");
 
 
-// include CLOUDINARY:
-
-//////////////////////uploader.array('imageUrl') for multiple images
 router.post("/upload", uploader.single("image"), (req, res, next) => {
     console.log("file is: ", req.file);
     if (!req.file) {
         next(new Error("No file uploaded!"));
         return;
     }
-    // get secure_url from the file object and save it in the
-    // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
     console.log(req.file.path);
     res.json({
         secure_url: req.file.path
